@@ -2,9 +2,10 @@
 
 ## Phase 1 — Sentiment Analysis (NLP)
 
-### 1. Initialisation du projet
+### ✅ 1. Initialisation du projet
 
 **Structure de répertoires à créer :**
+
 ```
 trust-behaviours/
 ├── phase1_sentiment/
@@ -19,6 +20,7 @@ trust-behaviours/
 ```
 
 **`requirements.txt` à créer :**
+
 ```
 torch
 numpy
@@ -30,6 +32,7 @@ uvicorn
 ```
 
 **`.gitignore` à créer :**
+
 ```
 phase1_sentiment/data/
 phase1_sentiment/models/
@@ -41,18 +44,18 @@ mlruns/
 
 ---
 
-### 2. Dataset
+### ❌ 2. Dataset
 
 - [ ] Télécharger le dataset **Amazon Fine Food Reviews** sur Kaggle → [lien](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews)
   - Colonnes utiles : `Score` (1-5) et `Text`
   - Labels : Score 1-2 → négatif, 3 → neutre, 4-5 → positif
 - Placer le fichier `Reviews.csv` dans `phase1_sentiment/data/`
 
----
+## -> Utilisation de kagglehub pour exploiter la donnée directemetn dans le cache de la lib
 
 ### 3. Notebook d'exploration (`phase1_sentiment/notebooks/01_eda.ipynb`)
 
-- [ ] Charger et inspecter le dataset (`df.head()`, `df.info()`)
+- [✅] Charger et inspecter le dataset (`df.head()`, `df.info()`)
 - [ ] Distribution des classes (vérifier déséquilibre entre positif/négatif/neutre)
 - [ ] Histogramme de la longueur des textes
 - [ ] Afficher des exemples par classe
@@ -62,6 +65,7 @@ mlruns/
 ### 4. Notebook d'entraînement (`phase1_sentiment/notebooks/02_train.ipynb`)
 
 **Prétraitement :**
+
 - [ ] Nettoyage des textes (lowercase, suppression HTML, ponctuation)
 - [ ] Tokenisation avec `torchtext` ou un vocabulaire custom
 - [ ] Padding des séquences (`maxlen=200`)
@@ -69,6 +73,7 @@ mlruns/
 - [ ] Créer un `Dataset` et `DataLoader` PyTorch
 
 **Architecture PyTorch :**
+
 ```python
 import torch
 import torch.nn as nn
@@ -95,6 +100,7 @@ class SentimentModel(nn.Module):
 ```
 
 **Boucle d'entraînement :**
+
 ```python
 optimizer = torch.optim.Adam(model.parameters())
 criterion = nn.CrossEntropyLoss()
@@ -110,6 +116,7 @@ for epoch in range(10):
 ```
 
 **Tracking MLflow :**
+
 ```python
 import mlflow
 
