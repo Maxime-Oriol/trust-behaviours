@@ -1,0 +1,6 @@
+phase1_sentiment/data/
+phase1_sentiment/models/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+mlruns/
