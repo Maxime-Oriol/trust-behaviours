@@ -1,5 +1,5 @@
-phase1_sentiment/data/
-phase1_sentiment/models/
+feelings/data/
+feelings/models/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
