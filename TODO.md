@@ -69,72 +69,13 @@ mlruns/
 
 **Prétraitement :**
 
-- [ ] Nettoyage des textes (lowercase, suppression HTML, ponctuation)
-- [ ] Tokenisation avec `torchtext` ou un vocabulaire custom
-- [ ] Padding des séquences (`maxlen=200`)
-- [ ] Split train/val/test (70/15/15)
-- [ ] Créer un `Dataset` et `DataLoader` PyTorch
-
-**Architecture PyTorch :**
-
-```python
-import torch
-import torch.nn as nn
-
-class SentimentModel(nn.Module):
-    def __init__(self, vocab_size, embedding_dim=128, hidden_dim=64, output_dim=3):
-        super().__init__()
-        self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=0)
-        self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=2,
-                            bidirectional=True, batch_first=True, dropout=0.3)
-        self.fc = nn.Sequential(
-            nn.Linear(hidden_dim * 2, 64),
-            nn.ReLU(),
-            nn.Dropout(0.3),
-            nn.Linear(64, output_dim)
-        )
-
-    def forward(self, x):
-        embedded = self.embedding(x)
-        _, (hidden, _) = self.lstm(embedded)
-        # Concaténer les 2 directions du dernier layer
-        out = torch.cat((hidden[-2], hidden[-1]), dim=1)
-        return self.fc(out)
-```
-
-**Boucle d'entraînement :**
-
-```python
-optimizer = torch.optim.Adam(model.parameters())
-criterion = nn.CrossEntropyLoss()
-
-for epoch in range(10):
-    model.train()
-    for X_batch, y_batch in train_loader:
-        optimizer.zero_grad()
-        preds = model(X_batch)
-        loss = criterion(preds, y_batch)
-        loss.backward()
-        optimizer.step()
-```
-
-**Tracking MLflow :**
-
-```python
-import mlflow
-
-with mlflow.start_run():
-    mlflow.log_param("vocab_size", vocab_size)
-    mlflow.log_param("embedding_dim", 128)
-    mlflow.log_param("lstm_hidden_dim", 64)
-
-    # après entraînement :
-    mlflow.log_metric("val_accuracy", val_accuracy)
-    mlflow.pytorch.log_model(model, "sentiment_model")
-```
-
-- [ ] Entraîner le modèle (objectif : val_accuracy > 85%)
-- [ ] Sauvegarder le modèle dans `phase1_sentiment/models/sentiment_model.pt`
+- [✅] Nettoyage des textes (lowercase, suppression HTML, ponctuation)
+- [✅] Tokenisation avec `pandas` ou un vocabulaire custom
+- [✅] Padding des séquences (`maxlen=222`)
+- [✅] Split train/val/test (70/15/15)
+- [✅] Créer un `Dataset` et `DataLoader` PyTorch
+- [⏳] Entraîner le modèle (objectif : val_accuracy > 85%)
+- [✅] Sauvegarder le modèle dans `phase1_sentiment/models/sentiment_model.pt`
 
 ---
 
