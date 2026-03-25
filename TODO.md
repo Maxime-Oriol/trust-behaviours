@@ -46,19 +46,22 @@ mlruns/
 
 ### ❌ 2. Dataset
 
-- [ ] Télécharger le dataset **Amazon Fine Food Reviews** sur Kaggle → [lien](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews)
+- [❌] Télécharger le dataset **Amazon Fine Food Reviews** sur Kaggle → [lien](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews)
   - Colonnes utiles : `Score` (1-5) et `Text`
   - Labels : Score 1-2 → négatif, 3 → neutre, 4-5 → positif
-- Placer le fichier `Reviews.csv` dans `phase1_sentiment/data/`
-
-## -> Utilisation de kagglehub pour exploiter la donnée directemetn dans le cache de la lib
+  - Placer le fichier `Reviews.csv` dans `phase1_sentiment/data/`
+- [✅] -> Utilisation de kagglehub pour exploiter la donnée directemetn dans le cache de la lib
 
 ### 3. Notebook d'exploration (`phase1_sentiment/notebooks/01_eda.ipynb`)
 
 - [✅] Charger et inspecter le dataset (`df.head()`, `df.info()`)
-- [ ] Distribution des classes (vérifier déséquilibre entre positif/négatif/neutre)
-- [ ] Histogramme de la longueur des textes
-- [ ] Afficher des exemples par classe
+  - Le dataset contient 568 454 entrées
+- [✅] Distribution des classes (vérifier déséquilibre entre positif/négatif/neutre)
+  - Décision d'utiliser les class weights pour éviter les dataset trop légers
+- [✅] Histogramme de la longueur des textes
+  - Certains textes sont très long donc à voir s'il ne faut pas les ranger dans les anomalies et les exclure de notre dataset
+- [✅] Afficher des exemples par classe
+  - Amusant, mais pas de conclusion à tirer de ça
 
 ---
 
