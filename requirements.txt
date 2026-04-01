@@ -1,11 +1,6 @@
 kagglehub
 torch
-numpy
 pandas
-scikit-learn
-fastapi
-uvicorn
 tqdm
 transformers
-datasets
 dotenv
